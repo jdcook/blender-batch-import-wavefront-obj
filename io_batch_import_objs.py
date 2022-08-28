@@ -31,7 +31,6 @@ bl_info = {
 
 
 import bpy
-import os
 from pathlib import Path
 
 from bpy_extras.io_utils import ImportHelper
@@ -120,8 +119,8 @@ class WM_OT_batchWavefront(bpy.types.Operator, ImportHelper):
                                 validate_meshes = self.validate_setting
                                 )
                 # assign filename (without extension) to the imported object
-                for importedObj in bpy.context.selected_objects:
-                    importedObj.name = os.path.splitext(selection.name)[0]
+                for imported_obj in bpy.context.selected_objects:
+                    imported_obj.name = Path(selection.name).stem
 
         return {'FINISHED'}
 
